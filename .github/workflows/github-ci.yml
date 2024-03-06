@@ -1,4 +1,4 @@
-name: Java CI/CD with Maven
+name: cicd-pipeline
 
 on:
   push:
