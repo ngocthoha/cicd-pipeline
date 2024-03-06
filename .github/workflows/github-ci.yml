@@ -44,13 +44,13 @@ jobs:
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/ltt-cicid:latest
 
-  # deploy:
-  #   needs: build
-  #   runs-on: [aws-ec2]
-  #   steps:
-  #     - name: Pull Image from docker hub
-  #       run: sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/ltt-cicid:latest
-  #     - name: Delete old container
-  #       run: sudo docker rm -f spring-boot-app-container
-  #     - name: Run Docker Image
-  #       run: sudo docker run -d -p 8080:8080 --name spring-boot-app-container ${{ secrets.DOCKERHUB_USERNAME }}/ltt-cicid
+   deploy:
+     needs: build
+     runs-on: [aws-ec2]
+     steps:
+       - name: Pull Image from docker hub
+         run: sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/ltt-cicid:latest
+       - name: Delete old container
+         run: sudo docker rm -f spring-boot-app-container
+       - name: Run Docker Image
+         run: sudo docker run -d -p 8080:8080 --name spring-boot-app-container ${{ secrets.DOCKERHUB_USERNAME }}/ltt-cicid
